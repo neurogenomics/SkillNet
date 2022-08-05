@@ -47,9 +47,9 @@ library(`r pkg`)
 g <- SkillNet::github_network(org = "neurogenomics")
 vis <- SkillNet::github_network_plot(graph = g$graph)
 ```
-<a href='https://neurogenomics.github.io/inst/examples/neurogenomics.html'
+<a href='https://neurogenomics.github.io/skillnet/inst/examples/neurogenomics.html'
 target='_blank'>
-    <img src='https://neurogenomics.github.io/inst/examples/Screenshot.png'>
+    <img src='https://neurogenomics.github.io/skillnet/inst/examples/Screenshot.png' height=400px>
 </a>
 
 > Click image above for interactive example.
