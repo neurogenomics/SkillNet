@@ -17,16 +17,11 @@ README updated: <i>Aug-05-2022</i>
 
 ## `SkillNet`: Visualize and explore your team’s skills.
 
-### Construct and search networks from skill sets and projects
+### Construct and search networks from skill sets and projects for all members of a team.
 
-for all members of a team.
-
-If you use `SkillNet`, please cite:
-
+<!-- If you use `SkillNet`, please cite:  -->
 <!-- Modify this by editing the file: inst/CITATION  -->
-
-> author1, author2, author3 (publicationYear) articleTitle,
-> *journalName*; volumeNumber, [linkToPublication](linkToPublication)
+<!-- > author1, author2, author3 (publicationYear) articleTitle, *journalName*; volumeNumber, [linkToPublication](linkToPublication) -->
 
 ## Installation
 

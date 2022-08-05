@@ -27,10 +27,10 @@ owner <- tolower(strsplit(URL,"/")[[1]][4])
 
 ### `r description`
  
-If you use ``r pkg``, please cite: 
+<!-- If you use ``r pkg``, please cite:  -->
 
 <!-- Modify this by editing the file: inst/CITATION  -->
-> `r utils::citation(pkg)$textVersion`
+<!-- > `r utils::citation(pkg)$textVersion` -->
 
 ## Installation 
 
