@@ -57,16 +57,16 @@ alph <- function(img,a=.8) {
 #### Create data to define images/position ####
 dat <- data.frame(x=rep(1,2), 
                   y=rep(1,2), 
-                  image = c(here::here("inst/hex/brain2.png"),
-                            here::here("inst/hex/gene1.png")),
-                  size = c(1, .5),
-                  alpha = c(.5, 1))
+                  image = c(here::here("inst/hex/kindpng_6478870.png"),
+                            here::here("inst/hex/kindpng_6478870.png")),
+                  size = c(1, 1),
+                  alpha = c(.5, .5))
 ## Make sure the gene is placed behind the brain
 dat$image <- factor(x = dat$image, 
                     labels = rev(unique(dat$image)), 
                     ordered = TRUE)
 #### Create plot ####
-gp <-  ggplot(data=dat, 
+gp <-  ggplot(data=dat[2,], 
               aes(x=x, y=y)) +  
   ggimage::geom_image(aes(image=image,
                           size=I(size), alpha=I(alpha))) + 
@@ -78,15 +78,15 @@ print(gp)
 ## hexSticker 
 
 ```{r}    
-s_size = 1.5
+s_size = 1.4
 stick <- hexSticker::sticker( 
   subplot = gp,
   #### Package name ####
-  package = pkg, p_size=20, p_y = 1.5,
+  package = pkg, p_size=25, p_y = 1.45, p_color = "grey",
   #### Subplot #####
-  s_x=1, s_y=1,  s_height = s_size, s_width = s_size,
+  s_x=1, s_y=.8,  s_height = s_size, s_width = s_size,
   #### Fill & border ####
-  h_fill = "#0e326d", h_color = "#44c7fd",
+  h_fill = "white", h_color = "#54cbd9",
   #### Spotlight ####
   spotlight = TRUE, l_alpha = .3, l_width = 10,
   #### File output ####
