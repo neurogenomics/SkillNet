@@ -21,10 +21,18 @@ library(pkg, character.only = TRUE)
 library(`r pkg`)
 ```
 
-# Examples
+# GitHub examples
+
+## Create graph for GitHub Organization 
 
 ```{r}
+g <- github_network(org = "neurogenomics")
+```
 
+## Plot graph as network
+
+```{r}
+vis <- github_network_plot(graph = g$graph)
 ```
 
 

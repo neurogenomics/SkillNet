@@ -1,87 +1,51 @@
-github_network <- function(subgraph,
-                           shape = c("image", "hexagon"),
-                           image =
-                               file.path(
-                                   "https://github.com/RajLabMSSM",
-                                   "Fine_Mapping/blob/master/echolocatoR",
-                                   "images/bat_silhouette.png?raw=true"),
-                           layout = echodeps::layout_star,
-                           show_plot = list(r=TRUE,
-                                            browser=TRUE),
-                           save_path = NULL,
-                           width = NULL,
-                           height = NULL,
-                           background = "white",
+#' GitHub network
+#' 
+#' Construct a network from a GitHub Organization's 
+#' repositories and contributors.
+#' @param org GitHub organization name.
+#' @param add_issues Extract metadata from Issues within each GitHub repo.
+#' @param add_comments Extract metadata from Comments within each GitHub Issue.
+#' @param add_contributors Extract metadata about which users 
+#' have contributed to which repos. 
+#' @param token GitHub authentication token. 
+#' See \link[gh]{gh} documentation for more details.
+#' @param verbose Print messages. 
+#' 
+#' @returns igraph object
+#' @source 
+#' \href{https://docs.github.com/en/rest/repos#get}{GitHub API: Repositories}
+#' \href{https://docs.github.com/en/rest/projects/cards}{GitHub API: Projects (classic)}
+#' \href{https://docs.github.com/en/enterprise-cloud\\@latest/issues/planning-and-tracking-with-projects/automating-your-project/using-the-api-to-manage-projects}{GitHub API: ProjectsV2}
+#' \href{https://github.com/ChadGoymer/githapi}{
+#' Non-functional GH package with similar objective}
+#' @export
+#' @importFrom gh gh_token
+#' @importFrom igraph graph_from_data_frame
+#' @examples 
+#' g <- github_network(org = "neurogenomics")
+github_network <- function(org,
+                           report = NULL,
+                           add_contributors = TRUE,
+                           add_issues = FALSE,
+                           add_comments = FALSE,
+                           token = gh::gh_token(),
                            verbose = TRUE){
-    
-    
-    requireNamespace("visNetwork")
-    requireNamespace("igraph")
-   
-    vis <- visNetwork::visIgraph(g) |>
-        # layout(pkg_name = pkg_name) |>
-        visNetwork::visNodes(
-            shape =  tolower(shape[1]),
-            borderWidth = 2,
-            # image = "image",#image,
-            labelHighlightBold = TRUE,
-            color = list(
-                background =  "#25355c",
-                border = "#41c6c8",
-                highlight = "#56ffff",
-                hover=list(background="blue",
-                           border="#41c6c8")
-            ),
-            font = list(color="white",
-                        size=20,
-                        face="Tahoma",
-                        strokeWidth=10,
-                        strokeColor="rgba(103,115,141,.5)"),
-            shadow = list(enabled = TRUE,
-                          size = 40,
-                          color="#537bcb") # "#03b1f0"
-        ) |>
-        visNetwork::visEdges(
-            arrows = 'from',
-            shadow = list(enabled=TRUE,color="#686ea6"),
-            smooth = TRUE,dashes =FALSE,
-            width = 2,
-            color = list(color = "#56ffff",
-                         opacity=.75,
-                         highlight = "#686ea6"),
-        ) |>
-        # visNetwork::visOptions(nodesIdSelection = list(enabled = FALSE,
-        #                                                selected=pkg_name,
-        #                                                main="select package"),
-        #                        highlightNearest=TRUE,
-        #                        width = width,
-        #                        height = height) |>
-        visNetwork::visInteraction(
-            tooltipStyle =paste(
-                "position: fixed",
-                "visibility: hidden",
-                "font-family: Tahoma",
-                "background-color: rgba(0,0,0,.5)",
-                "box-shadow: 2px 2px 2px 3px rgba(247, 247, 247, 0.5)",
-                "color: #fff",
-                "padding: 10px",
-                sep=";"))
-    #### Save ####
-    if(!is.null(save_path)) {
-        message("Saving dependency graph plot ==> ",save_path)
-        visNetwork::visSave(graph = vis,
-                            file = save_path,
-                            background = background,
-                            selfcontained = TRUE)
-    }
-    #### Show ####
-    if(isTRUE(show_plot$r)) {
-        messager("Showing plot in R.",v=verbose)
-        print(vis)
-    }
-    if(isTRUE(show_plot$browser) && file.exists(save_path)){
-        messager("Showing plot in browser.",v=verbose)
-        utils::browseURL(save_path)
-    }                                                                                                    shadow = list(enabled = TRUE, color = "#686ea6"), smooth = TRUE, 
-                                                                                                                             
+    if(is.null(report)){
+        report <- github_report(org = org, 
+                                token = token,
+                                add_contributors = add_contributors,
+                                add_issues = add_issues,
+                                add_comments = add_comments,
+                                verbose = verbose)  
+    } 
+    #### Prepare vertices #####
+    vertices <- github_network_vertices(report = report)
+    edges <- github_network_edges(report = report)  
+    #### Prepare relations data #####
+    g <- igraph::graph_from_data_frame(
+        d = edges,
+        vertices = vertices,
+        directed = TRUE)  
+    return(list(report=report,
+                graph=g))
 }
