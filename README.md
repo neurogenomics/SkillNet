@@ -1,17 +1,13 @@
 <img src='https://github.com/neurogenomics/SkillNet/raw/master/inst/hex/hex.png' height='300'><br><br>
 [![](https://img.shields.io/badge/devel%20version-0.99.0-black.svg)](https://github.com/neurogenomics/SkillNet)
 [![R build
-status](https://github.com/neurogenomics/SkillNet/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/neurogenomics/SkillNet/actions)
+status](https://github.com/neurogenomics/SkillNet/workflows/rworkflows/badge.svg)](https://github.com/neurogenomics/SkillNet/actions)
 [![](https://img.shields.io/github/last-commit/neurogenomics/SkillNet.svg)](https://github.com/neurogenomics/SkillNet/commits/master)
 [![](https://app.codecov.io/gh/neurogenomics/SkillNet/branch/master/graph/badge.svg)](https://app.codecov.io/gh/neurogenomics/SkillNet)
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
-<h4>
-Authors: <i>Brian Schilder</i>
-</h4>
-<h4>
-README updated: <i>Aug-05-2022</i>
-</h4>
+¶ <h4> ¶ Authors: <i>Brian Schilder</i> ¶ </h4>
+<h4> ¶ README updated: <i>Dec-22-2022</i> ¶ </h4>
 
 <!-- To modify Package/Title/Description/Authors fields, edit the DESCRIPTION file -->
 

@@ -1,7 +1,7 @@
 Package: SkillNet
 Type: Package
 Title: Visualize and explore your team's skills. 
-Version: 0.99.0
+Version: 0.99.1
 Authors@R: 
     c(person(given = "Brian",
            family = "Schilder",
@@ -38,7 +38,7 @@ Suggests:
     hexSticker,
     utils,
     rlang
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 License: GPL-3
 Config/testthat/edition: 3
